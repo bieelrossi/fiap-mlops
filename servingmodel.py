@@ -21,7 +21,11 @@ def call_predict(request = request):
 
     prediction = modelo.predict(campos)
 
-    return jsonify(str([1 if prob > 0.5 else 0 for prob in prediction]))
+    inadimplencia = [1 if prob > 0.5 else 0 for prob in prediction]
+
+    results = {'prediction': inadimplencia[0]}
+
+    return jsonify(results)
 
 if __name__ == '__main__':
     args = sys.argv[1:]
